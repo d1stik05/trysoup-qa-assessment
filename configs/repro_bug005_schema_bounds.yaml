@@ -1,0 +1,14 @@
+base: ""
+task: sft
+data:
+  train: configs/sample_train.jsonl
+  max_length: 0
+training:
+  epochs: true
+  batch_size: 0
+  lr: .inf
+  lora:
+    r: -8
+    alpha: -16
+    dropout: 5.0
+output: ./output_bug005

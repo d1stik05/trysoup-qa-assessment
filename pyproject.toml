@@ -1,0 +1,18 @@
+[project]
+name = "soup-cli-qa-evaluation"
+version = "1.0.0"
+description = "Comprehensive Grey-Box & Empirical Tesla T4 GPU QA Evaluation of soup-cli (v0.72.4)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "soup-cli[train]==0.72.4",
+    "pytest>=9.0.0",
+    "hypothesis>=6.100.0",
+    "pyyaml>=6.0.0",
+    "torch>=2.2.0",
+    "safetensors>=0.4.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"

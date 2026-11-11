@@ -1,0 +1,34 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.14.2, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\1\OneDrive\Desktop\Antigravity\QA Engineer\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: C:\Users\1\OneDrive\Desktop\Antigravity\QA Engineer
+plugins: anyio-4.16.0, hypothesis-6.170.15
+collecting ... collected 6 items
+
+tests/test_silent_failures.py::test_sf01_silent_ignored_typo_and_alias_hyperparameters PASSED [ 16%]
+tests/test_silent_failures.py::test_sf02_seed_field_missing_from_schema_and_repro_receipt_empty PASSED [ 33%]
+tests/test_silent_failures.py::test_sf03_data_validate_exits_zero_on_empty_and_invalid_datasets PASSED [ 50%]
+tests/test_silent_failures.py::test_sf04_corrupted_jsonl_and_wrong_columns_pass_train_dry_run_with_0_samples PASSED [ 66%]
+tests/test_silent_failures.py::test_sf05_single_row_dataset_val_split_truncates_train_to_zero_rows PASSED [ 83%]
+tests/test_silent_failures.py::test_sf06_loss_watchdog_ignores_nan_loss_due_to_ieee754_comparison FAILED [100%]
+
+================================== FAILURES ===================================
+_____ test_sf06_loss_watchdog_ignores_nan_loss_due_to_ieee754_comparison ______
+tests\test_silent_failures.py:366: in test_sf06_loss_watchdog_ignores_nan_loss_due_to_ieee754_comparison
+    silent_failure_confirmed=(cb._loss_spike_count == 0 and control.should_training_stop is False),
+                              ^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'SoupTrainerCallback' object has no attribute '_loss_spike_count'
+============================== warnings summary ===============================
+tests/test_silent_failures.py::test_sf02_seed_field_missing_from_schema_and_repro_receipt_empty
+  C:\Users\1\OneDrive\Desktop\Antigravity\QA Engineer\.venv\Lib\site-packages\typer\__init__.py:24: DeprecationWarning: 'click.utils.get_binary_stream' is deprecated and will be removed in Click 9.0.
+    from click.utils import get_binary_stream as get_binary_stream
+
+tests/test_silent_failures.py::test_sf02_seed_field_missing_from_schema_and_repro_receipt_empty
+  C:\Users\1\OneDrive\Desktop\Antigravity\QA Engineer\.venv\Lib\site-packages\typer\__init__.py:25: DeprecationWarning: 'click.utils.get_text_stream' is deprecated and will be removed in Click 9.0.
+    from click.utils import get_text_stream as get_text_stream
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_silent_failures.py::test_sf06_loss_watchdog_ignores_nan_loss_due_to_ieee754_comparison
+================== 1 failed, 5 passed, 2 warnings in 38.24s ===================

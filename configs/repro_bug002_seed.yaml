@@ -1,0 +1,17 @@
+base: trl-internal-testing/tiny-random-LlamaForCausalLM
+task: sft
+data:
+  train: configs/sample_train.jsonl
+  format: chatml
+  chat_template: chatml
+training:
+  epochs: 3
+  batch_size: 2
+  lr: 0.001
+  seed: 999
+  auto_mixed_precision: true
+  lora:
+    r: 8
+    alpha: 16
+    dropout: 0.0
+output: ./output_bug002

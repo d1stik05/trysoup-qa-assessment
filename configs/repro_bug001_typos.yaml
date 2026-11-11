@@ -1,0 +1,14 @@
+base: trl-internal-testing/tiny-random-LlamaForCausalLM
+task: sft
+taks: invalid_typo_ignored
+data:
+  train: configs/sample_train.jsonl
+  format: chatml
+  chat_template: chatml
+training:
+  learning_rate: 0.0
+  epchs: 99
+  lora_r: 4
+  max_steps: 2
+  auto_mixed_precision: true
+output: ./output_bug001

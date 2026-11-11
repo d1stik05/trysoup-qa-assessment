@@ -1,0 +1,11 @@
+base: trl-internal-testing/tiny-random-LlamaForCausalLM
+task: sft
+data:
+  train: configs/sample_mismatched_cols.jsonl
+  format: chatml
+  chat_template: chatml
+training:
+  epochs: 1
+  batch_size: 2
+  auto_mixed_precision: true
+output: ./output_bug004

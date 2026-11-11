@@ -1,0 +1,140 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.14.2, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\1\OneDrive\Desktop\Antigravity\QA Engineer\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: C:\Users\1\OneDrive\Desktop\Antigravity\QA Engineer
+plugins: anyio-4.16.0, hypothesis-6.170.15
+collecting ... collected 88 items
+
+tests/test_config_fuzzing.py::test_class1_typos_in_config_keys_deterministic[root_typo_baze-<lambda>-Unknown root key 'baze' alongside valid 'base'] PASSED [  1%]
+tests/test_config_fuzzing.py::test_class1_typos_in_config_keys_deterministic[root_typo_taks-<lambda>-Misspelled root key 'taks: dpo' (task stays default 'sft')] PASSED [  2%]
+tests/test_config_fuzzing.py::test_class1_typos_in_config_keys_deterministic[training_typo_learning_rate-<lambda>-Common alias 'training.learning_rate' instead of 'training.lr'] PASSED [  3%]
+tests/test_config_fuzzing.py::test_class1_typos_in_config_keys_deterministic[training_typo_learing_rate-<lambda>-Typo 'training.learing_rate'] PASSED [  4%]
+tests/test_config_fuzzing.py::test_class1_typos_in_config_keys_deterministic[training_typo_epchs-<lambda>-Typo 'training.epchs: 10' (epochs stays default 3)] PASSED [  5%]
+tests/test_config_fuzzing.py::test_class1_typos_in_config_keys_deterministic[training_typo_seed-<lambda>-Undocumented 'training.seed: 42' (referenced in sft.py/train.py getattr, absent in schema)] PASSED [  6%]
+tests/test_config_fuzzing.py::test_class1_typos_in_config_keys_deterministic[training_typo_max_steps-<lambda>-Unsupported 'training.max_steps: 50'] PASSED [  7%]
+tests/test_config_fuzzing.py::test_class1_typos_in_config_keys_deterministic[lora_typo_lora_r-<lambda>-Misspelled 'training.lora.lora_r: 128' instead of 'r'] PASSED [  9%]
+tests/test_config_fuzzing.py::test_class1_typos_in_config_keys_deterministic[lora_typo_lora_alpha-<lambda>-Misspelled 'training.lora.lora_alpha: 64' instead of 'alpha'] PASSED [ 10%]
+tests/test_config_fuzzing.py::test_class1_typos_in_config_keys_deterministic[data_typo_train_file-<lambda>-Typo 'data.train_file' alongside 'data.train'] PASSED [ 11%]
+tests/test_config_fuzzing.py::test_class1_typos_in_config_keys_deterministic[data_typo_max_seq_length-<lambda>-Typo 'data.max_seq_length: 512' instead of 'data.max_length'] PASSED [ 12%]
+tests/test_config_fuzzing.py::test_class1_hypothesis_arbitrary_unknown_keys PASSED [ 13%]
+tests/test_config_fuzzing.py::test_class1_cli_flag_typos_and_train_dry_run PASSED [ 14%]
+tests/test_config_fuzzing.py::test_class2_wrong_types_deterministic[yaml_root_list-- item1\n- item2\n-YAML document is a top-level list instead of mapping] PASSED [ 15%]
+tests/test_config_fuzzing.py::test_class2_wrong_types_deterministic[yaml_root_scalar_str-just_a_string_not_a_dict\n-YAML document is a bare scalar string] PASSED [ 17%]
+tests/test_config_fuzzing.py::test_class2_wrong_types_deterministic[yaml_root_scalar_int-12345\n-YAML document is a bare integer] PASSED [ 18%]
+tests/test_config_fuzzing.py::test_class2_wrong_types_deterministic[epochs_string-yaml_payload3-training.epochs is non-numeric string 'three'] PASSED [ 19%]
+tests/test_config_fuzzing.py::test_class2_wrong_types_deterministic[lr_list-yaml_payload4-training.lr is a list instead of float] PASSED [ 20%]
+tests/test_config_fuzzing.py::test_class2_wrong_types_deterministic[data_is_list-yaml_payload5-data block is a list instead of mapping] PASSED [ 21%]
+tests/test_config_fuzzing.py::test_class2_wrong_types_deterministic[lora_is_string-yaml_payload6-training.lora is a string instead of mapping] PASSED [ 22%]
+tests/test_config_fuzzing.py::test_class2_wrong_types_deterministic[epochs_bool_true-yaml_payload7-training.epochs is boolean True (Python bool is subclass of int)] PASSED [ 23%]
+tests/test_config_fuzzing.py::test_class2_wrong_types_deterministic[lora_r_bool_true-yaml_payload8-training.lora.r is boolean True (coerced to int 1 by Pydantic)] PASSED [ 25%]
+tests/test_config_fuzzing.py::test_class2_wrong_types_deterministic[batch_size_bool_true-yaml_payload9-training.batch_size is boolean True (coerced to int 1)] PASSED [ 26%]
+tests/test_config_fuzzing.py::test_class2_wrong_types_deterministic[save_steps_bool_false-yaml_payload10-training.save_steps is boolean False (coerced to int 0)] PASSED [ 27%]
+tests/test_config_fuzzing.py::test_class2_wrong_types_deterministic[numeric_string_coercion-yaml_payload11-Numeric strings '5' and '0.0001' for int/float fields (Pydantic lax coercion)] PASSED [ 28%]
+tests/test_config_fuzzing.py::test_class2_cli_non_mapping_yaml_traceback FAILED [ 29%]
+tests/test_config_fuzzing.py::test_class2_hypothesis_wrong_types_for_epochs PASSED [ 30%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[epochs_zero-<lambda>-training.epochs = 0 (schema has ge=1)] PASSED [ 31%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[epochs_negative-<lambda>-training.epochs = -5] PASSED [ 32%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[lr_zero-<lambda>-training.lr = 0.0 (schema has gt=0)] PASSED [ 34%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[lr_negative-<lambda>-training.lr = -1e-4] PASSED [ 35%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[lr_nan-<lambda>-training.lr = .nan] PASSED [ 36%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[lr_inf-<lambda>-training.lr = .inf (unbounded above in schema!)] PASSED [ 37%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[val_split_over_half-<lambda>-data.val_split = 0.8 (schema has le=0.5)] PASSED [ 38%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[val_split_negative-<lambda>-data.val_split = -0.1] PASSED [ 39%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[max_length_too_small-<lambda>-data.max_length = 16 (schema has ge=64)] PASSED [ 40%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[batch_size_zero-<lambda>-training.batch_size = 0 (no ge=1 bound on int branch!)] PASSED [ 42%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[batch_size_negative-<lambda>-training.batch_size = -4 (no ge=1 bound on int branch!)] PASSED [ 43%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[lora_r_zero-<lambda>-training.lora.r = 0 (no ge=1 bound in LoraConfig!)] PASSED [ 44%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[lora_r_negative-<lambda>-training.lora.r = -8 (no ge=1 bound in LoraConfig!)] PASSED [ 45%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[lora_alpha_negative-<lambda>-training.lora.alpha = -16 (no ge=1 bound in LoraConfig!)] PASSED [ 46%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[lora_dropout_negative-<lambda>-training.lora.dropout = -0.5 (no [0, 1) bound in LoraConfig!)] PASSED [ 47%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[lora_dropout_over_one-<lambda>-training.lora.dropout = 5.0 (no [0, 1) bound in LoraConfig!)] PASSED [ 48%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[save_steps_zero-<lambda>-training.save_steps = 0 (no ge=1 bound in TrainingConfig!)] PASSED [ 50%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[save_steps_negative-<lambda>-training.save_steps = -10 (no ge=1 bound in TrainingConfig!)] PASSED [ 51%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[logging_steps_zero-<lambda>-training.logging_steps = 0 (no ge=1 bound in TrainingConfig!)] PASSED [ 52%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[logging_steps_negative-<lambda>-training.logging_steps = -5 (no ge=1 bound in TrainingConfig!)] PASSED [ 53%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[weight_decay_inf-<lambda>-training.weight_decay = .inf] PASSED [ 54%]
+tests/test_config_fuzzing.py::test_class3_out_of_range_deterministic[max_grad_norm_inf-<lambda>-training.max_grad_norm = .inf] PASSED [ 55%]
+tests/test_config_fuzzing.py::test_class3_hypothesis_unbounded_lora_and_batch_size PASSED [ 56%]
+tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[empty_file--Completely empty YAML file (0 bytes)] PASSED [ 57%]
+tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[whitespace_only_file-   \n\t  \n-Whitespace-only YAML file] FAILED [ 59%]
+tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[comments_only_file-# Only a comment\n-YAML file containing only comments (parses to None)] PASSED [ 60%]
+tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[empty_dict-{}\n-Empty YAML mapping '{}' missing required base and data] PASSED [ 61%]
+tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[missing_base-yaml_payload4-Missing required root field 'base'] PASSED [ 62%]
+tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[missing_data-yaml_payload5-Missing required root field 'data'] PASSED [ 63%]
+tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[missing_data_train-yaml_payload6-Missing required 'data.train' field] PASSED [ 64%]
+tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[null_base-yaml_payload7-'base: null'] PASSED [ 65%]
+tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[null_training-yaml_payload8-'training: null'] PASSED [ 67%]
+tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[empty_string_base-yaml_payload9-'base: ""' (empty string accepted by SoupConfig!)] PASSED [ 68%]
+tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[whitespace_string_base-yaml_payload10-'base: "   "' (whitespace-only string accepted by SoupConfig!)] PASSED [ 69%]
+tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[empty_string_data_train-yaml_payload11-'data.train: ""' (empty string accepted by DataConfig!)] PASSED [ 70%]
+tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[empty_string_output-yaml_payload12-'output: ""' (empty string accepted by SoupConfig!)] PASSED [ 71%]
+tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[empty_list_target_modules-yaml_payload13-'training.lora.target_modules: []' (empty list accepted by LoraConfig!)] PASSED [ 72%]
+tests/test_config_fuzzing.py::test_class4_empty_string_data_train_dry_run_silent_success PASSED [ 73%]
+tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[dora_and_vera-<lambda>-PEFT conflict: use_dora=True and use_vera=True] PASSED [ 75%]
+tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[dora_and_pissa-<lambda>-PEFT conflict: use_dora=True and init_strategy='pissa'] PASSED [ 76%]
+tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[olora_and_random_init-<lambda>-PEFT conflict: use_olora=True and init_strategy='random'] PASSED [ 77%]
+tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[vera_and_rank_pattern-<lambda>-PEFT conflict: use_vera=True and rank_pattern set] PASSED [ 78%]
+tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[root_and_training_lora-<lambda>-Duplicate 'lora' block at both root and training.lora] PASSED [ 79%]
+tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[load_in_8bit_and_16bit-<lambda>-Quantization conflict: load_in_8bit=True and load_in_16bit=True] PASSED [ 80%]
+tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[eval_gate_enabled_no_suite-<lambda>-eval_gate.enabled=True without eval_gate.suite] PASSED [ 81%]
+tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[reward_hack_halt_no_detector-<lambda>-reward_hack_halt=True without reward_hack_detector] PASSED [ 82%]
+tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[mlx_with_multipack-<lambda>-backend='mlx' with training.multipack=True] PASSED [ 84%]
+tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[unfrozen_params_with_custom_lora-<lambda>-unfrozen_parameters combined with custom lora config] FAILED [ 85%]
+tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[dpo_task_with_alpaca_format-<lambda>-Conflict: task='dpo' (requires chosen/rejected) paired with data.format='alpaca'] PASSED [ 86%]
+tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[kto_task_with_sharegpt_format-<lambda>-Conflict: task='kto' (requires completion/label) paired with data.format='sharegpt'] PASSED [ 87%]
+tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[save_steps_gt_total_steps-<lambda>-Conflict: save_steps=999999 and logging_steps=999999 >> total training steps] PASSED [ 88%]
+tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[loftq_bits_with_random_init-<lambda>-Dead-knob conflict: loftq_bits=2 and loftq_iter=5 set while init_strategy='random'] PASSED [ 89%]
+tests/test_config_fuzzing.py::test_class5_cli_conflicting_flags_and_plan_vs_train_discrepancy FAILED [ 90%]
+tests/test_config_fuzzing.py::test_class6_very_long_strings_deterministic[base_10k_chars-<lambda>-base set to 12,000-char string (accepted by SoupConfig, rejected by soup plan >512)] PASSED [ 92%]
+tests/test_config_fuzzing.py::test_class6_very_long_strings_deterministic[data_train_10k_chars-<lambda>-data.train set to 12,000-char path string] PASSED [ 93%]
+tests/test_config_fuzzing.py::test_class6_very_long_strings_deterministic[output_10k_chars-<lambda>-output set to 12,000-char directory string] PASSED [ 94%]
+tests/test_config_fuzzing.py::test_class6_very_long_strings_deterministic[experiment_name_10k_chars-<lambda>-experiment_name set to 12,000-char string (no max_length cap in SoupConfig!)] PASSED [ 95%]
+tests/test_config_fuzzing.py::test_class6_very_long_strings_deterministic[chat_template_10k_chars-<lambda>-data.chat_template set to 12,000-char raw string] PASSED [ 96%]
+tests/test_config_fuzzing.py::test_class6_very_long_strings_deterministic[unfrozen_param_10k_chars-<lambda>-training.unfrozen_parameters pattern of 12,000 chars (capped at 512)] PASSED [ 97%]
+tests/test_config_fuzzing.py::test_class6_long_experiment_name_crashes_train_dry_run FAILED [ 98%]
+tests/test_config_fuzzing.py::test_class6_hypothesis_10k_plus_strings_in_schema PASSED [100%]
+
+================================== FAILURES ===================================
+_________________ test_class2_cli_non_mapping_yaml_traceback __________________
+tests\test_config_fuzzing.py:359: in test_class2_cli_non_mapping_yaml_traceback
+    assert c == "Traceback" and rc != 0
+E   AssertionError: assert ('Clear Error' == 'Traceback'
+E     
+E     - Traceback
+E     + Clear Error)
+_ test_class4_empty_and_missing_fields_deterministic[whitespace_only_file-   \n\t  \n-Whitespace-only YAML file] _
+tests\test_config_fuzzing.py:537: in test_class4_empty_and_missing_fields_deterministic
+    assert classification == "Clear Error" and rc == 1
+E   AssertionError: assert ('Traceback' == 'Clear Error'
+E     
+E     - Clear Error
+E     + Traceback)
+_ test_class5_conflicting_parameters_deterministic[unfrozen_params_with_custom_lora-<lambda>-unfrozen_parameters combined with custom lora config] _
+tests\test_config_fuzzing.py:603: in test_class5_conflicting_parameters_deterministic
+    assert classification == "Clear Error" and rc == 1
+E   AssertionError: assert ('Silent Acceptance' == 'Clear Error'
+E     
+E     - Clear Error
+E     + Silent Acceptance)
+_______ test_class5_cli_conflicting_flags_and_plan_vs_train_discrepancy _______
+tests\test_config_fuzzing.py:647: in test_class5_cli_conflicting_flags_and_plan_vs_train_discrepancy
+    assert c3 == "Silent Acceptance" and rc3 == 0
+E   AssertionError: assert ('Clear Error' == 'Silent Acceptance'
+E     
+E     - Silent Acceptance
+E     + Clear Error)
+___________ test_class6_long_experiment_name_crashes_train_dry_run ____________
+tests\test_config_fuzzing.py:701: in test_class6_long_experiment_name_crashes_train_dry_run
+    assert c == "Traceback" and rc != 0
+E   AssertionError: assert ('Clear Error' == 'Traceback'
+E     
+E     - Traceback
+E     + Clear Error)
+=========================== short test summary info ===========================
+FAILED tests/test_config_fuzzing.py::test_class2_cli_non_mapping_yaml_traceback
+FAILED tests/test_config_fuzzing.py::test_class4_empty_and_missing_fields_deterministic[whitespace_only_file-   \n\t  \n-Whitespace-only YAML file]
+FAILED tests/test_config_fuzzing.py::test_class5_conflicting_parameters_deterministic[unfrozen_params_with_custom_lora-<lambda>-unfrozen_parameters combined with custom lora config]
+FAILED tests/test_config_fuzzing.py::test_class5_cli_conflicting_flags_and_plan_vs_train_discrepancy
+FAILED tests/test_config_fuzzing.py::test_class6_long_experiment_name_crashes_train_dry_run
+======================== 5 failed, 83 passed in 44.17s ========================

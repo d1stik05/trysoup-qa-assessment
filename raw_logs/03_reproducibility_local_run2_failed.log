@@ -1,0 +1,21 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.14.2, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\1\OneDrive\Desktop\Antigravity\QA Engineer\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: C:\Users\1\OneDrive\Desktop\Antigravity\QA Engineer
+plugins: anyio-4.16.0, hypothesis-6.170.15
+collecting ... collected 3 items
+
+tests/test_reproducibility.py::test_repro01_greybox_seed_wiring_defect_in_soup_cli PASSED [ 33%]
+tests/test_reproducibility.py::test_repro02_identical_seed_vs_different_seed_and_soup_yaml_seed_bug PASSED [ 66%]
+tests/test_reproducibility.py::test_repro03_parse_colab_t4_results_if_available FAILED [100%]
+
+================================== FAILURES ===================================
+______________ test_repro03_parse_colab_t4_results_if_available _______________
+tests\test_reproducibility.py:243: in test_repro03_parse_colab_t4_results_if_available
+    assert exp1a["run1"]["returncode"] == 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   KeyError: 'returncode'
+=========================== short test summary info ===========================
+FAILED tests/test_reproducibility.py::test_repro03_parse_colab_t4_results_if_available
+======================== 1 failed, 2 passed in 35.24s =========================

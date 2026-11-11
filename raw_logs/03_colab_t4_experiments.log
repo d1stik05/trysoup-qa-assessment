@@ -1,0 +1,666 @@
+================================================================================
+SOUP-CLI (v0.72.4) GOOGLE COLAB T4 GPU QA EXPERIMENT RUNNER
+Timestamp (UTC): 2026-11-11T11:18:19.127554+00:00
+================================================================================
+[ENV] Python: 3.13.16 | PyTorch: 2.14.1+cu130 | soup-cli: 0.72.4
+[ENV] CUDA Available: True | Device: Tesla T4 | CUDA: 13.0
+Wed Nov 11 11:18:19 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.82.07              Driver Version: 580.82.07      CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla T4                       Off |   00000000:00:04.0 Off |                    0 |
+| N/A   42C    P8             14W /   70W |       3MiB /  15360MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+================================================================================
+EXPERIMENT 1A: 2x IDENTICAL SEED RUNS (seed=42 vs seed=42) via `soup train`
+================================================================================
+[Hardware-Fit Gate Probe (no --allow-oom-attempt)] rc=1
+Loading config from /tmp/soup_t4_qa_lgp9bq7m/exp1a_run1.yaml...
+╭───────────────────────────── Hardware-fit gate ──────────────────────────────╮
+│ Predicted peak VRAM 16.2 GB (+10% margin = 17.8 GB) exceeds 15.6 GB          │
+│ available.                                                                   │
+│ weights 14.0 | optim 0.6 | grads 0.3 | activations 0.2 | overhead 1.2 GB     │
+│                                                                              │
+│ Reduce batch_size / max_length, enable gradient_checkpointing or             │
+│ quantization, or pass --allow-oom-attempt to try anyway.                     │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[Default auto_mixed_precision=False on T4 Probe] rc=0
+Loading config from /tmp/soup_t4_qa_lgp9bq7m/exp1a_default_bf16_t4_bug.yaml...
+╭──────────────────────────── Hardware-fit warning ────────────────────────────╮
+│ Predicted peak VRAM 16.2 GB (+10% margin = 17.8 GB) exceeds 15.6 GB          │
+│ available.                                                                   │
+│ weights 14.0 | optim 0.6 | grads 0.3 | activations 0.2 | overhead 1.2 GB     │
+│                                                                              │
+│ --allow-oom-attempt set: launching anyway.                                   │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────── Training Setup ───────────────────────────────╮
+│ Device:  Tesla T4                                                            │
+│ Memory:  14.6 GB                                                             │
+│ Model:   trl-internal-testing/tiny-random-LlamaForCausalLM                   │
+│ Task:    sft                                                                 │
+│ Backend: transformers                                                        │
+│ LoRA:    r=8, alpha=16                                                       │
+│ Quant:   none                                                                │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Loading dataset...
+Loaded: 9 train samples
+Run ID: run_20261111_111843_88a04625
+Setting up model + trainer...
+Loading tokenizer: trl-internal-testing/tiny-random-LlamaForCausalLM
+Loading model: trl-internal-testing/tiny-random-LlamaForCausalLM
+LoRA applied: 1,024 trainable / 1,033,296 total (0.10%)
+chat_template override applied. Subsequent tokenizer.save_pretrained() / soup 
+push will persist this Jinja string into tokenizer_config.json — replacing 
+whatever the model originally shipped.
+Training started!
+
+{'loss': 10.3557, 'grad_norm': 0.1581728607416153, 'learning_rate': 0.0005, 'entropy': 10.370302200317383, 'num_tokens': 97.0, 'mean_token_accuracy': 0.0, 'epoch': 0.2}
+{'loss': 10.3688, 'grad_norm': 0.11962424963712692, 'learning_rate': 0.0004945369001834514, 'entropy': 10.37030029296875, 'num_tokens': 226.0, 'mean_token_accuracy': 0.0, 'epoch': 0.4}
+{'loss': 10.365, 'grad_norm': 0.07714993506669998, 'learning_rate': 0.0004783863644106502, 'entropy': 10.370295524597168, 'num_tokens': 365.0, 'mean_token_accuracy': 0.0, 'epoch': 0.6}
+{'loss': 10.3613, 'grad_norm': 0.07427515834569931, 'learning_rate': 0.0004522542485937369, 'entropy': 10.370299339294434, 'num_tokens': 531.0, 'mean_token_accuracy': 0.0, 'epoch': 0.8}
+{'loss': 10.3596, 'grad_norm': 0.10589678585529327, 'learning_rate': 0.0004172826515897146, 'entropy': 10.370302200317383, 'num_tokens': 595.0, 'mean_token_accuracy': 0.0, 'epoch': 1.0}
+{'loss': 10.3552, 'grad_norm': 0.1257975846529007, 'learning_rate': 0.000375, 'entropy': 10.370299339294434, 'num_tokens': 708.0, 'mean_token_accuracy': 0.0, 'epoch': 1.2}
+{'loss': 10.3638, 'grad_norm': 0.09058655053377151, 'learning_rate': 0.00032725424859373687, 'entropy': 10.37030029296875, 'num_tokens': 865.0, 'mean_token_accuracy': 0.0, 'epoch': 1.4}
+{'loss': 10.3612, 'grad_norm': 0.09918389469385147, 'learning_rate': 0.0002761321158169134, 'entropy': 10.370299339294434, 'num_tokens': 1003.0, 'mean_token_accuracy': 0.0, 'epoch': 1.6}
+{'loss': 10.3606, 'grad_norm': 0.08205452561378479, 'learning_rate': 0.00022386788418308668, 'entropy': 10.370299339294434, 'num_tokens': 1124.0, 'mean_token_accuracy': 0.0, 'epoch': 1.8}
+{'loss': 10.3617, 'grad_norm': 0.11062534153461456, 'learning_rate': 0.00017274575140626317, 'entropy': 10.370294570922852, 'num_tokens': 1190.0, 'mean_token_accuracy': 0.0, 'epoch': 2.0}
+{'loss': 10.3624, 'grad_norm': 0.13433268666267395, 'learning_rate': 0.00012500000000000006, 'entropy': 10.370302200317383, 'num_tokens': 1307.0, 'mean_token_accuracy': 0.0, 'epoch': 2.2}
+{'loss': 10.3596, 'grad_norm': 0.0960315465927124, 'learning_rate': 8.271734841028553e-05, 'entropy': 10.370302200317383, 'num_tokens': 1432.0, 'mean_token_accuracy': 0.0, 'epoch': 2.4}
+{'loss': 10.3609, 'grad_norm': 0.08535844832658768, 'learning_rate': 4.7745751406263163e-05, 'entropy': 10.370298385620117, 'num_tokens': 1566.0, 'mean_token_accuracy': 0.0, 'epoch': 2.6}
+{'loss': 10.3597, 'grad_norm': 0.09370405226945877, 'learning_rate': 2.1613635589349755e-05, 'entropy': 10.3702974319458, 'num_tokens': 1696.0, 'mean_token_accuracy': 0.0, 'epoch': 2.8}
+{'loss': 10.3571, 'grad_norm': 0.11785198003053665, 'learning_rate': 5.463099816548578e-06, 'entropy': 10.370299339294434, 'num_tokens': 1785.0, 'mean_token_accuracy': 0.0, 'epoch': 3.0}
+{'train_runtime': 5.7933, 'train_samples_per_second': 4.661, 'train_steps_per_second': 2.589, 'train_loss': 10.360843912760417, 'epoch': 3.0}
+╭────── Soup Training: trl-internal-testing/tiny-random-LlamaForCausalLM ──────╮
+│ Epoch 3.0/3   100%                                                           │
+│ Step:  15/15                                                                 │
+│ Loss:  0.0000    LR: 0.00e+00                                                │
+│ Speed: 2.59 it/s                                                             │
+│ GPU:   0.0/14.6 GB                                                           │
+╰────────────────────────────────── Tesla T4 ──────────────────────────────────╯╭───────────────────────────── Training Complete! ─────────────────────────────╮
+│ Loss: 10.3557 -> 10.3571                                                     │
+│ Duration: 0m                                                                 │
+│ Output: /tmp/soup_t4_qa_lgp9bq7m/out_t4_bf16_bug                             │
+│ Run ID: run_20261111_111843_88a04625                                         │
+│                                                                              │
+│ Quick test:  soup chat --model /tmp/soup_t4_qa_lgp9bq7m/out_t4_bf16_bug      │
+│ Push to HF:  soup push --model /tmp/soup_t4_qa_lgp9bq7m/out_t4_bf16_bug      │
+│ Merge LoRA:  soup merge --adapter /tmp/soup_t4_qa_lgp9bq7m/out_t4_bf16_bug   │
+│ Export GGUF: soup export --model /tmp/soup_t4_qa_lgp9bq7m/out_t4_bf16_bug    │
+│ Run details: soup runs show run_20261111_111843_88a04625                     │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794395927.251696    3558 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794395930.376618    3558 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+You are using the default legacy behaviour of the <class 'transformers.models.llama.tokenization_llama_fast.LlamaTokenizerFast'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thoroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565 - if you loaded a llama tokenizer from a GGUF file you can ignore this message.
+The following generation flags are not valid and may be ignored: ['pad_token_id']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+
+Map:   0%|          | 0/9 [00:00<?, ? examples/s]return_assistant_tokens_mask==True but chat template does not contain `{% generation %}` keyword.
+
+Map: 100%|██████████| 9/9 [00:00<00:00, 299.82 examples/s]
+
+Map:   0%|          | 0/3 [00:00<?, ? examples/s]
+Map: 100%|██████████| 3/3 [00:00<00:00, 473.01 examples/s]
+
+Truncating train dataset:   0%|          | 0/9 [00:00<?, ? examples/s]
+Truncating train dataset: 100%|██████████| 9/9 [00:00<00:00, 2400.25 examples/s]
+
+Truncating eval dataset:   0%|          | 0/3 [00:00<?, ? examples/s]
+Truncating eval dataset: 100%|██████████| 3/3 [00:00<00:00, 1144.11 examples/s]
+The model is already on multiple devices. Skipping the move to device specified in `args`.
+The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'eos_token_id': 2, 'bos_token_id': 1, 'pad_token_id': 0}.
+
+  0%|          | 0/15 [00:00<?, ?it/s]
+  7%|▋         | 1/15 [00:04<01:04,  4.60s/it]
+                                              
+
+  7%|▋         | 1/15 [00:04<01:04,  4.60s/it]
+ 13%|█▎        | 2/15 [00:04<00:26,  2.02s/it]
+                                              
+
+ 13%|█▎        | 2/15 [00:04<00:26,  2.02s/it]
+                                              
+
+ 20%|██        | 3/15 [00:04<00:24,  2.02s/it]
+                                              
+
+ 27%|██▋       | 4/15 [00:04<00:22,  2.02s/it]
+ 33%|███▎      | 5/15 [00:05<00:06,  1.53it/s]
+                                              
+
+ 33%|███▎      | 5/15 [00:05<00:06,  1.53it/s]
+                                              
+
+ 40%|████      | 6/15 [00:05<00:05,  1.53it/s]
+                                              
+
+ 47%|████▋     | 7/15 [00:05<00:05,  1.53it/s]
+ 53%|█████▎    | 8/15 [00:05<00:02,  2.94it/s]
+                                              
+
+ 53%|█████▎    | 8/15 [00:05<00:02,  2.94it/s]
+                                              
+
+ 60%|██████    | 9/15 [00:05<00:02,  2.94it/s]
+                                              
+
+ 67%|██████▋   | 10/15 [00:05<00:01,  2.94it/s]
+                                               
+
+ 73%|███████▎  | 11/15 [00:05<00:01,  2.94it/s]
+ 80%|████████  | 12/15 [00:05<00:00,  5.30it/s]
+                                               
+
+ 80%|████████  | 12/15 [00:05<00:00,  5.30it/s]
+                                               
+
+ 87%|████████▋ | 13/15 [00:05<00:00,  5.30it/s]
+                                               
+
+ 93%|█████████▎| 14/15 [00:05<00:00,  5.30it/s]
+100%|██████████| 15/15 [00:05<00:00,  7.39it/s]
+                                               
+
+100%|██████████| 15/15 [00:05<00:00,  7.39it/s]
+                                               
+
+100%|██████████| 15/15 [00:05<00:00,  7.39it/s]
+100%|██████████| 15/15 [00:05<00:00,  2.59it/s]
+
+[Exp 1A Run 1] rc=0 (22.702s) | steps=16 | final_loss=10.357
+Loading config from /tmp/soup_t4_qa_lgp9bq7m/exp1a_run1.yaml...
+╭──────────────────────────── Hardware-fit warning ────────────────────────────╮
+│ Predicted peak VRAM 16.2 GB (+10% margin = 17.8 GB) exceeds 15.6 GB          │
+│ available.                                                                   │
+│ weights 14.0 | optim 0.6 | grads 0.3 | activations 0.2 | overhead 1.2 GB     │
+│                                                                              │
+│ --allow-oom-attempt set: launching anyway.                                   │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────── Training Setup ───────────────────────────────╮
+│ Device:  Tesla T4                                                            │
+│ Memory:  14.6 GB                                                             │
+│ Model:   trl-internal-testing/tiny-random-LlamaForCausalLM                   │
+│ Task:    sft                                                                 │
+│ Backend: transformers                                                        │
+│ LoRA:    r=8, alpha=16                                                       │
+│ Quant:   none                                                                │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Loading dataset...
+Loaded: 9 train samples
+Run ID: run_20261111_111908_0366aef8
+Setting up model + trainer...
+Loading tokenizer: trl-internal-testing/tiny-random-LlamaForCausalLM
+Loading model: trl-internal-testing/tiny-random-LlamaForCausalLM
+LoRA applied: 1,024 trainable / 1,033,296 total (0.10%)
+chat_template override applied. Subsequent tokenizer.save_pretrained() / soup 
+push will persist this Jinja string into tokenizer_config.json — replacing 
+whatever the model originally shipped.
+Auto mixed-precision picked: fp16 
+(model=trl-internal-testing/tiny-random-LlamaForCausalLM, cc=7.5)
+Training started!
+
+{'loss': 10.3557, 'grad_norm': 0.17739857733249664, 'learning_rate': 0.0005, 'entropy': 10.370302200317383, 'num_tokens': 97.0, 'mean_token_accuracy': 0.0, 'epoch': 0.2}
+{'loss': 10.369, 'grad_norm': 0.10453466325998306, 'learning_rate': 0.0004945369001834514, 'entropy': 10.37030029296875, 'num_tokens': 226.0, 'mean_token_accuracy': 0.0, 'epoch': 0.4}
+{'loss': 10.3651, 'grad_norm': 0.07992470264434814, 'learning_rate': 0.0004783863644106502, 'entropy': 10.370295524597168, 'num_tokens': 365.0, 'mean_token_accuracy': 0.0, 'epoch': 0.6}
+{'loss': 10.3613, 'grad_norm': 0.07566206157207489, 'learning_rate': 0.0004522542485937369, 'entropy': 10.370299339294434, 'num_tokens': 531.0, 'mean_token_accuracy': 0.0, 'epoch': 0.8}
+{'loss': 10.3595, 'grad_norm': 0.11805140972137451, 'learning_rate': 0.0004172826515897146, 'entropy': 10.370301246643066, 'num_tokens': 595.0, 'mean_token_accuracy': 0.0, 'epoch': 1.0}
+{'loss': 10.3552, 'grad_norm': 0.1394222527742386, 'learning_rate': 0.000375, 'entropy': 10.370299339294434, 'num_tokens': 708.0, 'mean_token_accuracy': 0.0, 'epoch': 1.2}
+{'loss': 10.3641, 'grad_norm': 0.08930455148220062, 'learning_rate': 0.00032725424859373687, 'entropy': 10.37030029296875, 'num_tokens': 865.0, 'mean_token_accuracy': 0.0, 'epoch': 1.4}
+{'loss': 10.3616, 'grad_norm': 0.10427935421466827, 'learning_rate': 0.0002761321158169134, 'entropy': 10.370299339294434, 'num_tokens': 1003.0, 'mean_token_accuracy': 0.0, 'epoch': 1.6}
+{'loss': 10.3603, 'grad_norm': 0.09938782453536987, 'learning_rate': 0.00022386788418308668, 'entropy': 10.370301246643066, 'num_tokens': 1124.0, 'mean_token_accuracy': 0.0, 'epoch': 1.8}
+{'loss': 10.3625, 'grad_norm': 0.11504711210727692, 'learning_rate': 0.00017274575140626317, 'entropy': 10.370294570922852, 'num_tokens': 1190.0, 'mean_token_accuracy': 0.0, 'epoch': 2.0}
+{'loss': 10.363, 'grad_norm': 0.13357169926166534, 'learning_rate': 0.00012500000000000006, 'entropy': 10.370301246643066, 'num_tokens': 1307.0, 'mean_token_accuracy': 0.0, 'epoch': 2.2}
+{'loss': 10.3597, 'grad_norm': 0.11345202475786209, 'learning_rate': 8.271734841028553e-05, 'entropy': 10.370302200317383, 'num_tokens': 1432.0, 'mean_token_accuracy': 0.0, 'epoch': 2.4}
+{'loss': 10.361, 'grad_norm': 0.09298482537269592, 'learning_rate': 4.7745751406263163e-05, 'entropy': 10.3702974319458, 'num_tokens': 1566.0, 'mean_token_accuracy': 0.0, 'epoch': 2.6}
+{'loss': 10.3601, 'grad_norm': 0.10169485211372375, 'learning_rate': 2.1613635589349755e-05, 'entropy': 10.370298385620117, 'num_tokens': 1696.0, 'mean_token_accuracy': 0.0, 'epoch': 2.8}
+{'loss': 10.357, 'grad_norm': 0.12300580739974976, 'learning_rate': 5.463099816548578e-06, 'entropy': 10.370299339294434, 'num_tokens': 1785.0, 'mean_token_accuracy': 0.0, 'epoch': 3.0}
+{'train_runtime': 2.9146, 'train_samples_per_second': 9.264, 'train_steps_per_second': 5.146, 'train_loss': 10.36101245880127, 'epoch': 3.0}
+╭────── Soup Training: trl-internal-testing/tiny-random-LlamaForCausalLM ──────╮
+│ Epoch 3.0/3   100%                                                           │
+│ Step:  15/15                                                                 │
+│ Loss:  0.0000    LR: 0.00e+00                                                │
+│ Speed: 5.15 it/s                                                             │
+│ GPU:   0.0/14.6 GB                                                           │
+╰────────────────────────────────── Tesla T4 ──────────────────────────────────╯╭───────────────────────────── Training Complete! ─────────────────────────────╮
+│ Loss: 10.3557 -> 10.3570                                                     │
+│ Duration: 0m                                                                 │
+│ Output: /tmp/soup_t4_qa_lgp9bq7m/out_1a_run1                                 │
+│ Run ID: run_20261111_111908_0366aef8                                         │
+│                                                                              │
+│ Quick test:  soup chat --model /tmp/soup_t4_qa_lgp9bq7m/out_1a_run1          │
+│ Push to HF:  soup push --model /tmp/soup_t4_qa_lgp9bq7m/out_1a_run1          │
+│ Merge LoRA:  soup merge --adapter /tmp/soup_t4_qa_lgp9bq7m/out_1a_run1       │
+│ Export GGUF: soup export --model /tmp/soup_t4_qa_lgp9bq7m/out_1a_run1        │
+│ Run details: soup runs show run_20261111_111908_0366aef8                     │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[Exp 1A Run 2] rc=0 (22.833s) | steps=16 | final_loss=10.3571
+Loading config from /tmp/soup_t4_qa_lgp9bq7m/exp1a_run2.yaml...
+╭──────────────────────────── Hardware-fit warning ────────────────────────────╮
+│ Predicted peak VRAM 16.2 GB (+10% margin = 17.8 GB) exceeds 15.6 GB          │
+│ available.                                                                   │
+│ weights 14.0 | optim 0.6 | grads 0.3 | activations 0.2 | overhead 1.2 GB     │
+│                                                                              │
+│ --allow-oom-attempt set: launching anyway.                                   │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────── Training Setup ───────────────────────────────╮
+│ Device:  Tesla T4                                                            │
+│ Memory:  14.6 GB                                                             │
+│ Model:   trl-internal-testing/tiny-random-LlamaForCausalLM                   │
+│ Task:    sft                                                                 │
+│ Backend: transformers                                                        │
+│ LoRA:    r=8, alpha=16                                                       │
+│ Quant:   none                                                                │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Loading dataset...
+Loaded: 9 train samples
+Run ID: run_20261111_111931_5eed7d3c
+Setting up model + trainer...
+Loading tokenizer: trl-internal-testing/tiny-random-LlamaForCausalLM
+Loading model: trl-internal-testing/tiny-random-LlamaForCausalLM
+LoRA applied: 1,024 trainable / 1,033,296 total (0.10%)
+chat_template override applied. Subsequent tokenizer.save_pretrained() / soup 
+push will persist this Jinja string into tokenizer_config.json — replacing 
+whatever the model originally shipped.
+Auto mixed-precision picked: fp16 
+(model=trl-internal-testing/tiny-random-LlamaForCausalLM, cc=7.5)
+Training started!
+
+{'loss': 10.3557, 'grad_norm': 0.1509828418493271, 'learning_rate': 0.0005, 'entropy': 10.370302200317383, 'num_tokens': 97.0, 'mean_token_accuracy': 0.0, 'epoch': 0.2}
+{'loss': 10.369, 'grad_norm': 0.08706073462963104, 'learning_rate': 0.0004945369001834514, 'entropy': 10.37030029296875, 'num_tokens': 226.0, 'mean_token_accuracy': 0.0, 'epoch': 0.4}
+{'loss': 10.3653, 'grad_norm': 0.05723024532198906, 'learning_rate': 0.0004783863644106502, 'entropy': 10.370295524597168, 'num_tokens': 365.0, 'mean_token_accuracy': 0.0, 'epoch': 0.6}
+{'loss': 10.3614, 'grad_norm': 0.06833504885435104, 'learning_rate': 0.0004522542485937369, 'entropy': 10.370299339294434, 'num_tokens': 531.0, 'mean_token_accuracy': 0.0, 'epoch': 0.8}
+{'loss': 10.3595, 'grad_norm': 0.10560263693332672, 'learning_rate': 0.0004172826515897146, 'entropy': 10.370301246643066, 'num_tokens': 595.0, 'mean_token_accuracy': 0.0, 'epoch': 1.0}
+{'loss': 10.3552, 'grad_norm': 0.1269935965538025, 'learning_rate': 0.000375, 'entropy': 10.370301246643066, 'num_tokens': 708.0, 'mean_token_accuracy': 0.0, 'epoch': 1.2}
+{'loss': 10.3641, 'grad_norm': 0.08295273035764694, 'learning_rate': 0.00032725424859373687, 'entropy': 10.37030029296875, 'num_tokens': 865.0, 'mean_token_accuracy': 0.0, 'epoch': 1.4}
+{'loss': 10.3619, 'grad_norm': 0.08287809044122696, 'learning_rate': 0.0002761321158169134, 'entropy': 10.37030029296875, 'num_tokens': 1003.0, 'mean_token_accuracy': 0.0, 'epoch': 1.6}
+{'loss': 10.3608, 'grad_norm': 0.07786126434803009, 'learning_rate': 0.00022386788418308668, 'entropy': 10.370301246643066, 'num_tokens': 1124.0, 'mean_token_accuracy': 0.0, 'epoch': 1.8}
+{'loss': 10.363, 'grad_norm': 0.08688094466924667, 'learning_rate': 0.00017274575140626317, 'entropy': 10.370294570922852, 'num_tokens': 1190.0, 'mean_token_accuracy': 0.0, 'epoch': 2.0}
+{'loss': 10.363, 'grad_norm': 0.12139265239238739, 'learning_rate': 0.00012500000000000006, 'entropy': 10.370299339294434, 'num_tokens': 1307.0, 'mean_token_accuracy': 0.0, 'epoch': 2.2}
+{'loss': 10.36, 'grad_norm': 0.09257833659648895, 'learning_rate': 8.271734841028553e-05, 'entropy': 10.3703031539917, 'num_tokens': 1432.0, 'mean_token_accuracy': 0.0, 'epoch': 2.4}
+{'loss': 10.3616, 'grad_norm': 0.0729682445526123, 'learning_rate': 4.7745751406263163e-05, 'entropy': 10.3702974319458, 'num_tokens': 1566.0, 'mean_token_accuracy': 0.0, 'epoch': 2.6}
+{'loss': 10.3604, 'grad_norm': 0.08723869919776917, 'learning_rate': 2.1613635589349755e-05, 'entropy': 10.370298385620117, 'num_tokens': 1696.0, 'mean_token_accuracy': 0.0, 'epoch': 2.8}
+{'loss': 10.3571, 'grad_norm': 0.11492817848920822, 'learning_rate': 5.463099816548578e-06, 'entropy': 10.37030029296875, 'num_tokens': 1785.0, 'mean_token_accuracy': 0.0, 'epoch': 3.0}
+{'train_runtime': 2.9313, 'train_samples_per_second': 9.211, 'train_steps_per_second': 5.117, 'train_loss': 10.361198234558106, 'epoch': 3.0}
+╭────── Soup Training: trl-internal-testing/tiny-random-LlamaForCausalLM ──────╮
+│ Epoch 3.0/3   100%                                                           │
+│ Step:  15/15                                                                 │
+│ Loss:  0.0000    LR: 0.00e+00                                                │
+│ Speed: 5.12 it/s                                                             │
+│ GPU:   0.0/14.6 GB                                                           │
+╰────────────────────────────────── Tesla T4 ──────────────────────────────────╯╭───────────────────────────── Training Complete! ─────────────────────────────╮
+│ Loss: 10.3557 -> 10.3571                                                     │
+│ Duration: 0m                                                                 │
+│ Output: /tmp/soup_t4_qa_lgp9bq7m/out_1a_run2                                 │
+│ Run ID: run_20261111_111931_5eed7d3c                                         │
+│                                                                              │
+│ Quick test:  soup chat --model /tmp/soup_t4_qa_lgp9bq7m/out_1a_run2          │
+│ Push to HF:  soup push --model /tmp/soup_t4_qa_lgp9bq7m/out_1a_run2          │
+│ Merge LoRA:  soup merge --adapter /tmp/soup_t4_qa_lgp9bq7m/out_1a_run2       │
+│ Export GGUF: soup export --model /tmp/soup_t4_qa_lgp9bq7m/out_1a_run2        │
+│ Run details: soup runs show run_20261111_111931_5eed7d3c                     │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[Exp 1A Summary] Curve 1: [10.3557, 10.369, 10.3651, 10.3613, 10.3595, 10.3552, 10.3641, 10.3616, 10.3603, 10.3625, 10.363, 10.3597, 10.361, 10.3601, 10.357, 0.0]
+[Exp 1A Summary] Curve 2: [10.3557, 10.369, 10.3653, 10.3614, 10.3595, 10.3552, 10.3641, 10.3619, 10.3608, 10.363, 10.363, 10.36, 10.3616, 10.3604, 10.3571, 0.0]
+[Exp 1A Summary] Max step loss |diff|: 0.0005999999999986017
+[Exp 1A Summary] Adapter Weights Global L2 diff: 4.7295049260000415 | Max abs diff: 0.461652934551239
+
+================================================================================
+EXPERIMENT 1B: `training.seed: 999` vs `training.seed: 42` + `--repro-receipt`
+================================================================================
+[Exp 1B Summary] `training.seed: 999` curve: [10.3557, 10.369, 10.365, 10.3613, 10.3596, 10.3555, 10.3642, 10.3616, 10.3609, 10.3623, 10.3633, 10.3601, 10.3613, 10.3601, 10.3573, 0.0]
+[Exp 1B Summary] `--repro-receipt` recorded seeds: {} (EXPECTED {'torch': 999, ...}, ACTUAL empty {}!)
+[Exp 1B Summary] Adapter L2 diff between `seed: 42` and `seed: 999` in soup.yaml: 4.625595864686945 (0.0 proves `training.seed` was completely ignored!)
+
+================================================================================
+EXPERIMENT 1C: CUDA DETERMINISM PROBE (lora.dropout=0.1, Deterministic Mode)
+================================================================================
+[Exp 1C Summary] Adapter L2 diff with dropout=0.1: 4.530984323887006
+
+================================================================================
+EXPERIMENT 2: END-TO-END GPU TRAINING SILENT FAILURE PROBES
+================================================================================
+[SF-GPU-1] Misspelled `learning_rate: 0.0`, `epchs: 99`, `lora_r: 4` -> exit_code=0 | steps=16 | lora_B_norm=0.006837088360368678
+Loading config from /tmp/soup_t4_qa_lgp9bq7m/sf_gpu1_typos.yaml...
+╭──────────────────────────── Hardware-fit warning ────────────────────────────╮
+│ Predicted peak VRAM 16.2 GB (+10% margin = 17.8 GB) exceeds 15.6 GB          │
+│ available.                                                                   │
+│ weights 14.0 | optim 0.6 | grads 0.3 | activations 0.2 | overhead 1.2 GB     │
+│                                                                              │
+│ --allow-oom-attempt set: launching anyway.                                   │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────── Training Setup ───────────────────────────────╮
+│ Device:  Tesla T4                                                            │
+│ Memory:  14.6 GB                                                             │
+│ Model:   trl-internal-testing/tiny-random-LlamaForCausalLM                   │
+│ Task:    sft                                                                 │
+│ Backend: transformers                                                        │
+│ LoRA:    r=64, alpha=16                                                      │
+│ Quant:   none                                                                │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Loading dataset...
+Loaded: 9 train samples
+Run ID: run_20261111_112103_9939e658
+Setting up model + trainer...
+Loading tokenizer: trl-internal-testing/tiny-random-LlamaForCausalLM
+Loading model: trl-internal-testing/tiny-random-LlamaForCausalLM
+LoRA applied: 8,192 trainable / 1,040,464 total (0.79%)
+chat_template override applied. Subsequent tokenizer.save_pretrained() / soup 
+push will persist this Jinja string into tokenizer_config.json — replacing 
+whatever the model originally shipped.
+Auto mixed-precision picked: fp16 
+(model=trl-internal-testing/tiny-random-LlamaForCausalLM, cc=7.5)
+Training started!
+
+{'loss': 10.3557, 'grad_norm': 0.04348237067461014, 'learning_rate': 2e-05, 'entropy': 10.370302200317383, 'num_tokens': 97.0, 'mean_token_accuracy': 0.0, 'epoch': 0.2}
+{'loss': 10.3695, 'grad_norm': 0.03220513090491295, 'learning_rate': 1.9781476007338058e-05, 'entropy': 10.37030029296875, 'num_tokens': 226.0, 'mean_token_accuracy': 0.0, 'epoch': 0.4}
+{'loss': 10.3658, 'grad_norm': 0.022506754845380783, 'learning_rate': 1.913545457642601e-05, 'entropy': 10.370296478271484, 'num_tokens': 365.0, 'mean_token_accuracy': 0.0, 'epoch': 0.6}
+{'loss': 10.3621, 'grad_norm': 0.019351644441485405, 'learning_rate': 1.8090169943749477e-05, 'entropy': 10.370299339294434, 'num_tokens': 531.0, 'mean_token_accuracy': 0.0, 'epoch': 0.8}
+{'loss': 10.3608, 'grad_norm': 0.030764112249016762, 'learning_rate': 1.6691306063588583e-05, 'entropy': 10.370302200317383, 'num_tokens': 595.0, 'mean_token_accuracy': 0.0, 'epoch': 1.0}
+{'loss': 10.3579, 'grad_norm': 0.035191796720027924, 'learning_rate': 1.5000000000000002e-05, 'entropy': 10.370301246643066, 'num_tokens': 708.0, 'mean_token_accuracy': 0.0, 'epoch': 1.2}
+{'loss': 10.3657, 'grad_norm': 0.023562172427773476, 'learning_rate': 1.3090169943749475e-05, 'entropy': 10.37030029296875, 'num_tokens': 865.0, 'mean_token_accuracy': 0.0, 'epoch': 1.4}
+{'loss': 10.3641, 'grad_norm': 0.027483472600579262, 'learning_rate': 1.1045284632676535e-05, 'entropy': 10.370299339294434, 'num_tokens': 1003.0, 'mean_token_accuracy': 0.0, 'epoch': 1.6}
+{'loss': 10.3631, 'grad_norm': 0.024302223697304726, 'learning_rate': 8.954715367323468e-06, 'entropy': 10.370301246643066, 'num_tokens': 1124.0, 'mean_token_accuracy': 0.0, 'epoch': 1.8}
+{'loss': 10.3655, 'grad_norm': 0.032047372311353683, 'learning_rate': 6.909830056250527e-06, 'entropy': 10.370294570922852, 'num_tokens': 1190.0, 'mean_token_accuracy': 0.0, 'epoch': 2.0}
+{'loss': 10.3672, 'grad_norm': 0.03597813844680786, 'learning_rate': 5.000000000000003e-06, 'entropy': 10.370301246643066, 'num_tokens': 1307.0, 'mean_token_accuracy': 0.0, 'epoch': 2.2}
+{'loss': 10.3631, 'grad_norm': 0.02689303830265999, 'learning_rate': 3.308693936411421e-06, 'entropy': 10.370302200317383, 'num_tokens': 1432.0, 'mean_token_accuracy': 0.0, 'epoch': 2.4}
+{'loss': 10.3641, 'grad_norm': 0.024847012013196945, 'learning_rate': 1.9098300562505266e-06, 'entropy': 10.3702974319458, 'num_tokens': 1566.0, 'mean_token_accuracy': 0.0, 'epoch': 2.6}
+{'loss': 10.3633, 'grad_norm': 0.026975618675351143, 'learning_rate': 8.645454235739903e-07, 'entropy': 10.370298385620117, 'num_tokens': 1696.0, 'mean_token_accuracy': 0.0, 'epoch': 2.8}
+{'loss': 10.3589, 'grad_norm': 0.0288429856300354, 'learning_rate': 2.1852399266194312e-07, 'entropy': 10.37030029296875, 'num_tokens': 1785.0, 'mean_token_accuracy': 0.0, 'epoch': 3.0}
+{'train_runtime': 2.9225, 'train_samples_per_second': 9.239, 'train_steps_per_second': 5.133, 'train_loss': 10.363117599487305, 'epoch': 3.0}
+╭────── Soup Training: trl-internal-testing/tiny-random-LlamaForCausalLM ──────╮
+│ Epoch 3.0/3   100%                                                           │
+│ Step:  15/15                                                                 │
+│ Loss:  0.0000    LR: 0.00e+00                                                │
+│ Speed: 5.13 it/s                                                             │
+│ GPU:   0.0/14.6 GB                                                           │
+╰────────────────────────────────── Tesla T4 ──────────────────────────────────╯╭───────────────────────────── Training Complete! ─────────────────────────────╮
+│ Loss: 10.3557 -> 10.3589                                                     │
+│ Duration: 0m                                                                 │
+│ Output: /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu1                                 │
+│ Run ID: run_20261111_112103_9939e658                                         │
+│                                                                              │
+│ Quick test:  soup chat --model /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu1          │
+│ Push to HF:  soup push --model /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu1          │
+│ Merge LoRA:  soup merge --adapter /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu1       │
+│ Export GGUF: soup export --model /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu1        │
+│ Run details: soup runs show run_20261111_112103_9939e658                     │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[SF-GPU-2] Extreme `lr: 1e15` with `loss_watchdog: true` -> exit_code=0 | nan_elements_in_adapter=0 | final_loss=10.3557
+Loading config from /tmp/soup_t4_qa_lgp9bq7m/sf_gpu2_nan_loss.yaml...
+╭──────────────────────────── Hardware-fit warning ────────────────────────────╮
+│ Predicted peak VRAM 16.2 GB (+10% margin = 17.8 GB) exceeds 15.6 GB          │
+│ available.                                                                   │
+│ weights 14.0 | optim 0.6 | grads 0.3 | activations 0.2 | overhead 1.2 GB     │
+│                                                                              │
+│ --allow-oom-attempt set: launching anyway.                                   │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────── Training Setup ───────────────────────────────╮
+│ Device:  Tesla T4                                                            │
+│ Memory:  14.6 GB                                                             │
+│ Model:   trl-internal-testing/tiny-random-LlamaForCausalLM                   │
+│ Task:    sft                                                                 │
+│ Backend: transformers                                                        │
+│ LoRA:    r=8, alpha=16                                                       │
+│ Quant:   none                                                                │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Loading dataset...
+Loaded: 9 train samples
+Run ID: run_20261111_112127_99d38e4b
+Setting up model + trainer...
+Loading tokenizer: trl-internal-testing/tiny-random-LlamaForCausalLM
+Loading model: trl-internal-testing/tiny-random-LlamaForCausalLM
+LoRA applied: 1,024 trainable / 1,033,296 total (0.10%)
+chat_template override applied. Subsequent tokenizer.save_pretrained() / soup 
+push will persist this Jinja string into tokenizer_config.json — replacing 
+whatever the model originally shipped.
+Auto mixed-precision picked: fp16 
+(model=trl-internal-testing/tiny-random-LlamaForCausalLM, cc=7.5)
+Training started!
+
+{'loss': 10.3557, 'grad_norm': 0.13087841868400574, 'learning_rate': 1000000000000000.0, 'entropy': 10.370302200317383, 'num_tokens': 97.0, 'mean_token_accuracy': 0.0, 'epoch': 0.2}
+╭────── Soup Training: trl-internal-testing/tiny-random-LlamaForCausalLM ──────╮
+│ Epoch 0.2/3   7%                                                             │
+│ Step:  1/15                                                                  │
+│ Loss:  10.3557    LR: 1.00e+15                                               │
+│ GPU:   0.0/14.6 GB                                                           │
+│ Grad:  0.1309                                                                │
+╰────────────────────────────────── Tesla T4 ──────────────────────────────────╯╭─────────────────────────────── Loss Watchdog ────────────────────────────────╮
+│ Loss watchdog triggered!                                                     │
+│                                                                              │
+│ Loss 10.3557 exceeded threshold 3.0 for 1 consecutive steps (patience=1).    │
+│                                                                              │
+│ Training will stop.                                                          │
+╰──────────────────────────────────────────────────────────────────────────────╯
+{'train_runtime': 2.3176, 'train_samples_per_second': 11.65, 'train_steps_per_second': 6.472, 'train_loss': 10.355698585510254, 'epoch': 0.2}
+╭───────────────────────────── Training Complete! ─────────────────────────────╮
+│ Loss: 10.3557 -> 10.3557                                                     │
+│ Duration: 0m                                                                 │
+│ Output: /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu2                                 │
+│ Run ID: run_20261111_112127_99d38e4b                                         │
+│                                                                              │
+│ Quick test:  soup chat --model /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu2          │
+│ Push to HF:  soup push --model /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu2          │
+│ Merge LoRA:  soup merge --adapter /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu2       │
+│ Export GGUF: soup export --model /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu2        │
+│ Run details: soup runs show run_20261111_112127_99d38e4b                     │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[SF-GPU-3] Near-zero `lr: 1e-30` -> exit_code=0 | lora_B_global_l2_norm=0.0 (0.0 means zero weight update!)
+Loading config from /tmp/soup_t4_qa_lgp9bq7m/sf_gpu3_zero_update.yaml...
+╭──────────────────────────── Hardware-fit warning ────────────────────────────╮
+│ Predicted peak VRAM 16.2 GB (+10% margin = 17.8 GB) exceeds 15.6 GB          │
+│ available.                                                                   │
+│ weights 14.0 | optim 0.6 | grads 0.3 | activations 0.2 | overhead 1.2 GB     │
+│                                                                              │
+│ --allow-oom-attempt set: launching anyway.                                   │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────── Training Setup ───────────────────────────────╮
+│ Device:  Tesla T4                                                            │
+│ Memory:  14.6 GB                                                             │
+│ Model:   trl-internal-testing/tiny-random-LlamaForCausalLM                   │
+│ Task:    sft                                                                 │
+│ Backend: transformers                                                        │
+│ LoRA:    r=8, alpha=16                                                       │
+│ Quant:   none                                                                │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Loading dataset...
+Loaded: 9 train samples
+Run ID: run_20261111_112150_89e897ba
+Setting up model + trainer...
+Loading tokenizer: trl-internal-testing/tiny-random-LlamaForCausalLM
+Loading model: trl-internal-testing/tiny-random-LlamaForCausalLM
+LoRA applied: 1,024 trainable / 1,033,296 total (0.10%)
+chat_template override applied. Subsequent tokenizer.save_pretrained() / soup 
+push will persist this Jinja string into tokenizer_config.json — replacing 
+whatever the model originally shipped.
+Auto mixed-precision picked: fp16 
+(model=trl-internal-testing/tiny-random-LlamaForCausalLM, cc=7.5)
+Training started!
+
+{'loss': 10.3557, 'grad_norm': 0.12237006425857544, 'learning_rate': 1e-30, 'entropy': 10.370302200317383, 'num_tokens': 97.0, 'mean_token_accuracy': 0.0, 'epoch': 0.2}
+{'loss': 10.3695, 'grad_norm': 0.10062392801046371, 'learning_rate': 9.89073800366903e-31, 'entropy': 10.37030029296875, 'num_tokens': 226.0, 'mean_token_accuracy': 0.0, 'epoch': 0.4}
+{'loss': 10.3658, 'grad_norm': 0.0621616505086422, 'learning_rate': 9.567727288213004e-31, 'entropy': 10.370295524597168, 'num_tokens': 365.0, 'mean_token_accuracy': 0.0, 'epoch': 0.6}
+{'loss': 10.3621, 'grad_norm': 0.05736251175403595, 'learning_rate': 9.045084971874738e-31, 'entropy': 10.370299339294434, 'num_tokens': 531.0, 'mean_token_accuracy': 0.0, 'epoch': 0.8}
+{'loss': 10.3608, 'grad_norm': 0.0900907963514328, 'learning_rate': 8.345653031794292e-31, 'entropy': 10.370302200317383, 'num_tokens': 595.0, 'mean_token_accuracy': 0.0, 'epoch': 1.0}
+{'loss': 10.358, 'grad_norm': 0.10417226701974869, 'learning_rate': 7.500000000000001e-31, 'entropy': 10.370301246643066, 'num_tokens': 708.0, 'mean_token_accuracy': 0.0, 'epoch': 1.2}
+{'loss': 10.3657, 'grad_norm': 0.06844867020845413, 'learning_rate': 6.545084971874737e-31, 'entropy': 10.37030029296875, 'num_tokens': 865.0, 'mean_token_accuracy': 0.0, 'epoch': 1.4}
+{'loss': 10.3642, 'grad_norm': 0.09070298820734024, 'learning_rate': 5.522642316338268e-31, 'entropy': 10.37030029296875, 'num_tokens': 1003.0, 'mean_token_accuracy': 0.0, 'epoch': 1.6}
+{'loss': 10.3632, 'grad_norm': 0.06883551925420761, 'learning_rate': 4.477357683661734e-31, 'entropy': 10.370301246643066, 'num_tokens': 1124.0, 'mean_token_accuracy': 0.0, 'epoch': 1.8}
+{'loss': 10.3656, 'grad_norm': 0.08296290785074234, 'learning_rate': 3.4549150281252635e-31, 'entropy': 10.370294570922852, 'num_tokens': 1190.0, 'mean_token_accuracy': 0.0, 'epoch': 2.0}
+{'loss': 10.3673, 'grad_norm': 0.10176456719636917, 'learning_rate': 2.5000000000000015e-31, 'entropy': 10.370301246643066, 'num_tokens': 1307.0, 'mean_token_accuracy': 0.0, 'epoch': 2.2}
+{'loss': 10.3632, 'grad_norm': 0.0802704244852066, 'learning_rate': 1.6543469682057105e-31, 'entropy': 10.370302200317383, 'num_tokens': 1432.0, 'mean_token_accuracy': 0.0, 'epoch': 2.4}
+{'loss': 10.3642, 'grad_norm': 0.08069706708192825, 'learning_rate': 9.549150281252634e-32, 'entropy': 10.3702974319458, 'num_tokens': 1566.0, 'mean_token_accuracy': 0.0, 'epoch': 2.6}
+{'loss': 10.3634, 'grad_norm': 0.07585785537958145, 'learning_rate': 4.3227271178699513e-32, 'entropy': 10.370298385620117, 'num_tokens': 1696.0, 'mean_token_accuracy': 0.0, 'epoch': 2.8}
+{'loss': 10.3589, 'grad_norm': 0.08466476202011108, 'learning_rate': 1.0926199633097156e-32, 'entropy': 10.370299339294434, 'num_tokens': 1785.0, 'mean_token_accuracy': 0.0, 'epoch': 3.0}
+{'train_runtime': 3.3639, 'train_samples_per_second': 8.026, 'train_steps_per_second': 4.459, 'train_loss': 10.363183085123698, 'epoch': 3.0}
+╭────── Soup Training: trl-internal-testing/tiny-random-LlamaForCausalLM ──────╮
+│ Epoch 3.0/3   100%                                                           │
+│ Step:  15/15                                                                 │
+│ Loss:  0.0000    LR: 0.00e+00                                                │
+│ Speed: 4.46 it/s                                                             │
+│ GPU:   0.0/14.6 GB                                                           │
+╰────────────────────────────────── Tesla T4 ──────────────────────────────────╯╭───────────────────────────── Training Complete! ─────────────────────────────╮
+│ Loss: 10.3557 -> 10.3589                                                     │
+│ Duration: 0m                                                                 │
+│ Output: /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu3                                 │
+│ Run ID: run_20261111_112150_89e897ba                                         │
+│                                                                              │
+│ Quick test:  soup chat --model /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu3          │
+│ Push to HF:  soup push --model /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu3          │
+│ Merge LoRA:  soup merge --adapter /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu3       │
+│ Export GGUF: soup export --model /tmp/soup_t4_qa_lgp9bq7m/out_sf_gpu3        │
+│ Run details: soup runs show run_20261111_112150_89e897ba                     │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+[SF-GPU-4] Wrong dataset columns -> `--dry-run` exit_code=1 ('Data OK: 0 train samples') | full train exit_code=1
+Loading config from /tmp/soup_t4_qa_lgp9bq7m/sf_gpu4_wrong_cols.yaml...
+╭───────────────────────────── Hardware-fit gate ──────────────────────────────╮
+│ Predicted peak VRAM 16.2 GB (+10% margin = 17.8 GB) exceeds 15.6 GB          │
+│ available.                                                                   │
+│ weights 14.0 | optim 0.6 | grads 0.3 | activations 0.2 | overhead 1.2 GB     │
+│                                                                              │
+│ Reduce batch_size / max_length, enable gradient_checkpointing or             │
+│ quantization, or pass --allow-oom-attempt to try anyway.                     │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+Loading config from /tmp/soup_t4_qa_lgp9bq7m/sf_gpu4_wrong_cols.yaml...
+╭──────────────────────────── Hardware-fit warning ────────────────────────────╮
+│ Predicted peak VRAM 16.2 GB (+10% margin = 17.8 GB) exceeds 15.6 GB          │
+│ available.                                                                   │
+│ weights 14.0 | optim 0.6 | grads 0.3 | activations 0.2 | overhead 1.2 GB     │
+│                                                                              │
+│ --allow-oom-attempt set: launching anyway.                                   │
+╰──────────────────────────────────────────────────────────────────────────────╯
+╭─────────────────────────────── Training Setup ───────────────────────────────╮
+│ Device:  Tesla T4                                                            │
+│ Memory:  14.6 GB                                                             │
+│ Model:   trl-internal-testing/tiny-random-LlamaForCausalLM                   │
+│ Task:    sft                                                                 │
+│ Backend: transformers                                                        │
+│ LoRA:    r=8, alpha=16                                                       │
+│ Quant:   none                                                                │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Loading dataset...
+Loaded: 0 train samples
+Run ID: run_20261111_112216_b065b4c7
+Setting up model + trainer...
+Loading tokenizer: trl-internal-testing/tiny-random-LlamaForCausalLM
+Loading model: trl-internal-testing/tiny-random-LlamaForCausalLM
+LoRA applied: 1,024 trainable / 1,033,296 total (0.10%)
+chat_template override applied. Subsequent tokenizer.save_pretrained() / soup 
+push will persist this Jinja string into tokenizer_config.json — replacing 
+whatever the model originally shipped.
+
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794396141.719174    4728 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794396144.403728    4728 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+You are using the default legacy behaviour of the <class 'transformers.models.llama.tokenization_llama_fast.LlamaTokenizerFast'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thoroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565 - if you loaded a llama tokenizer from a GGUF file you can ignore this message.
+The following generation flags are not valid and may be ignored: ['pad_token_id']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+
+Error: ValueError: Column name ['messages'] not in the dataset. Current columns 
+in the dataset: []
+Run with --verbose for the full traceback.
+
+╭─────────────────────────────── Full Traceback ───────────────────────────────╮
+│ Traceback (most recent call last):                                           │
+│   File "/usr/local/lib/python3.13/dist-packages/soup_cli/cli.py", line 810,  │
+│ in run                                                                       │
+│     app()                                                                    │
+│     ~~~^^                                                                    │
+│   File "/usr/local/lib/python3.13/dist-packages/typer/main.py", line 335, in │
+│ __call__                                                                     │
+│     raise e                                                                  │
+│   File "/usr/local/lib/python3.13/dist-packages/typer/main.py", line 318, in │
+│ __call__                                                                     │
+│     return get_command(self)(*args, **kwargs)                                │
+│            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^                                │
+│   File "/usr/local/lib/python3.13/dist-packages/click/core.py", line 1631,   │
+│ in __call__                                                                  │
+│     return self.main(*args, **kwargs)                                        │
+│            ~~~~~~~~~^^^^^^^^^^^^^^^^^                                        │
+│   File "/usr/local/lib/python3.13/dist-packages/typer/core.py", line 807, in │
+│ main                                                                         │
+│     return _main(                                                            │
+│         self,                                                                │
+│     ...<6 lines>...                                                          │
+│         **extra,                                                             │
+│     )                                                                        │
+│   File "/usr/local/lib/python3.13/dist-packages/typer/core.py", line 193, in │
+│ _main                                                                        │
+│     rv = self.invoke(ctx)                                                    │
+│   File "/usr/local/lib/python3.13/dist-packages/click/core.py", line 2032,   │
+│ in invoke                                                                    │
+│     return _process_result(sub_ctx.command.invoke(sub_ctx))                  │
+│                            ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^                   │
+│   File "/usr/local/lib/python3.13/dist-packages/click/core.py", line 1415,   │
+│ in invoke                                                                    │
+│     return ctx.invoke(self.callback, **ctx.params)                           │
+│            ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                           │
+│   File "/usr/local/lib/python3.13/dist-packages/click/core.py", line 910, in │
+│ invoke                                                                       │
+│     return callback(*args, **kwargs)                                         │
+│   File "/usr/local/lib/python3.13/dist-packages/typer/main.py", line 705, in │
+│ wrapper                                                                      │
+│     return callback(**use_params)                                            │
+│   File "/usr/local/lib/python3.13/dist-packages/soup_cli/commands/train.py", │
+│ line 1413, in train                                                          │
+│     trainer_wrapper.setup(dataset)                                           │
+│     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^                                           │
+│   File "/usr/local/lib/python3.13/dist-packages/soup_cli/trainer/sft.py",    │
+│ line 342, in setup                                                           │
+│     train_ds = Dataset.from_list(dataset["train"]).map(                      │
+│         format_row, remove_columns=["messages"]                              │
+│     )                                                                        │
+│   File "/usr/local/lib/python3.13/dist-packages/datasets/arrow_dataset.py",  │
+│ line 575, in wrapper                                                         │
+│     out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)       │
+│                                            ~~~~^^^^^^^^^^^^^^^^^^^^^^^       │
+│   File "/usr/local/lib/python3.13/dist-packages/datasets/arrow_dataset.py",  │
+│ line 3377, in map                                                            │
+│     return self.remove_columns(remove_columns)                               │
+│            ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^                               │
+│   File "/usr/local/lib/python3.13/dist-packages/datasets/arrow_dataset.py",  │
+│ line 575, in wrapper                                                         │
+│     out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)       │
+│                                            ~~~~^^^^^^^^^^^^^^^^^^^^^^^       │
+│   File "/usr/local/lib/python3.13/dist-packages/datasets/fingerprint.py",    │
+│ line 468, in wrapper                                                         │
+│     out = func(dataset, *args, **kwargs)                                     │
+│   File "/usr/local/lib/python3.13/dist-packages/datasets/arrow_dataset.py",  │
+│ line 2530, in remove_columns                                                 │
+│     raise ValueError(                                                        │
+│     ...<2 lines>...                                                          │
+│     )                                                                        │
+│ ValueError: Column name ['messages'] not in the dataset. Current columns in  │
+│ the dataset: []                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+================================================================================
+COMPLETED ALL EXPERIMENTS. Saved:
+  1. raw_logs/03_colab_t4_experiments.log
+  2. raw_logs/03_colab_t4_results.json
+================================================================================

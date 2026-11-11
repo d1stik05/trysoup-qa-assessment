@@ -1,0 +1,11 @@
+base: trl-internal-testing/tiny-random-LlamaForCausalLM
+task: completely_invalid_task_name
+data:
+  train: configs/sample_train.jsonl
+training:
+  epochs: -100
+  lr: -5.0
+  lora:
+    use_dora: true
+    use_vera: true
+output: ./output_bug006

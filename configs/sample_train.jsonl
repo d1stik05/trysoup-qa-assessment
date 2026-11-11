@@ -1,0 +1,10 @@
+{"instruction": "What is 2 + 2?", "input": "", "output": "2 + 2 is 4."}
+{"instruction": "Name the capital of France.", "input": "", "output": "The capital of France is Paris."}
+{"instruction": "Explain what a unit test is.", "input": "", "output": "A unit test verifies a small, isolated piece of code."}
+{"instruction": "Convert 100 Celsius to water state.", "input": "", "output": "At 100 degrees Celsius at standard pressure, water boils into steam."}
+{"instruction": "Write a greeting in Python.", "input": "", "output": "print('Hello, world!')"}
+{"instruction": "What is the chemical symbol for gold?", "input": "", "output": "The chemical symbol for gold is Au."}
+{"instruction": "State Newton's second law.", "input": "", "output": "Force equals mass times acceleration (F = m * a)."}
+{"instruction": "What does HTTP stand for?", "input": "", "output": "HTTP stands for Hypertext Transfer Protocol."}
+{"instruction": "Identify the largest planet in our solar system.", "input": "", "output": "Jupiter is the largest planet in our solar system."}
+{"instruction": "What is the square root of 81?", "input": "", "output": "The square root of 81 is 9."}

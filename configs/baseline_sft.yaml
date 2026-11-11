@@ -1,0 +1,25 @@
+base: trl-internal-testing/tiny-random-LlamaForCausalLM
+task: sft
+backend: transformers
+
+data:
+  train: ./configs/sample_train.jsonl
+  format: alpaca
+  val_split: 0.2
+  max_length: 128
+
+training:
+  epochs: 1
+  lr: 2e-5
+  batch_size: 2
+  gradient_accumulation_steps: 1
+  quantization: none
+  save_steps: 10
+  logging_steps: 1
+  lora:
+    r: 8
+    alpha: 16
+    dropout: 0.05
+    target_modules: auto
+
+output: ./output_baseline

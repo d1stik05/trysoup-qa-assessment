@@ -1,0 +1,20 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.14.2, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\1\OneDrive\Desktop\Antigravity\QA Engineer\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: C:\Users\1\OneDrive\Desktop\Antigravity\QA Engineer
+plugins: anyio-4.16.0, hypothesis-6.170.15
+collecting ... collected 3 items
+
+tests/test_reproducibility.py::test_repro01_greybox_seed_wiring_defect_in_soup_cli FAILED [ 33%]
+tests/test_reproducibility.py::test_repro02_identical_seed_vs_different_seed_and_soup_yaml_seed_bug PASSED [ 66%]
+tests/test_reproducibility.py::test_repro03_parse_colab_t4_results_if_available SKIPPED [100%]
+
+================================== FAILURES ===================================
+_____________ test_repro01_greybox_seed_wiring_defect_in_soup_cli _____________
+tests\test_reproducibility.py:108: in test_repro01_greybox_seed_wiring_defect_in_soup_cli
+    assert 'getattr(tcfg, "seed", None)' in src
+E   assert 'getattr(tcfg, "seed", None)' in '    def _setup_transformers(self, cfg, tcfg):\n        """Load model via standard transformers + peft pipeline."""\n        from peft import LoraConfig, TaskType, get_peft_model, prepare_model_for_kbit_training\n        from transformers import AutoModelForCausalLM, AutoTokenizer\n\n        from soup_cli.utils.moe import detect_moe_model, get_moe_target_modules\n\n        # Liger Kernel Ч apply fused ops BEFORE model loading\n        if tcfg.use_liger:\n            from soup_cli.utils.liger import apply_liger_kernel\n\n            if apply_liger_kernel(cfg.base):\n                console.print(\n                    "[green]Liger Kernel enabled:[/] fused RMSNorm, SwiGLU, CrossEntropy, RoPE"\n                )\n            else:\n                console.print("[yellow]Liger Kernel: no matching architecture found[/]")\n\n        # Cut Cross-Entropy (v0.28.0) Ч patch BEFORE model loading\n        if tcfg.use_cut_ce:\n            from soup_cli.utils.cut_ce import apply_cut_ce\n\n            if apply_cut_ce(cfg.base):\n                console.print(\n                    "[green]Cut Cross-Entropy enabled:[/] "\n                    "large-vocab CE replaced with chunked CCE kernel"\n    ...# v0.39.0 Part D / v0.40.6 #67 Ч surgical PEFT patches via shared helpers.\n            from soup_cli.utils.peft_wiring import (\n                apply_post_lora_patches,\n                apply_pre_lora_patches,\n            )\n            apply_pre_lora_patches(self.model, cfg.base)\n            self.model = get_peft_model(self.model, lora_config)\n            apply_post_lora_patches(self.model)\n\n            # v0.71.12 #84 Ч Mixture-of-Depths selective-token routing. Applied\n            # AFTER get_peft_model so the freshly-added routers are trainable.\n            from soup_cli.utils.mod import apply_mod_if_configured\n\n            apply_mod_if_configured(self.model, tcfg, cfg.base, console)\n\n            # v0.71.20 #136 Ч MoE router-only training (train_router_only).\n            # Applied AFTER get_peft_model so the final PEFT-wrapped parameter\n            # set is frozen consistently. (Expert quant ran pre-LoRA above.)\n            from soup_cli.utils.moe_quant import (\n                apply_router_only_freeze_if_configured,\n            )\n\n            apply_router_only_freeze_if_configured(self.model, tcfg, console)\n\n        self._apply_quantization_aware(tcfg)\n'
+=========================== short test summary info ===========================
+FAILED tests/test_reproducibility.py::test_repro01_greybox_seed_wiring_defect_in_soup_cli
+=================== 1 failed, 1 passed, 1 skipped in 18.83s ===================
